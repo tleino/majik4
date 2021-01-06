@@ -3,21 +3,28 @@ Foreword
 
 This repository contains legacy source code from year 1999,
 but may be of interest to someone. However, since both
-clients and server of this 2D online RPG is available, and
-most of the source code is standards compliant ANSI C, it
-should be possible to get it running and have some fun, or
-even continue its development.
+clients and server of this 2D online RPG is available,
+and does not rely on components that are no longer available,
+it should be possible to get it running and have some fun,
+or even continue its development.
 
 This is the server. You can find client programs from:
 
-https://github.com/tleino/majik4-client
-https://github.com/tleino/majik4-client-drac
+	https://github.com/tleino/majik4-client
+	https://github.com/tleino/majik4-client-drac
 
-Please note, most of the URLs no longer exist: please use
-archive.org from around year 1999 to access the referenced
-content. Also, the e-mail addresses no longer work. For
-contacting the original development team, you can try namhas
-at gmail . com.
+The server-side part of the code depends on an LMUD driver
+program. Historically MudOS was used. However, as of
+2021-01-06, it seems FluffOS LPMUD driver should do the
+trick with minimal changes:
+
+	https://github.com/fluffos/fluffos
+
+Please note, the majik.netti.fi or majik3d.org URLs no longer
+exist: please use archive.org from around year 1999 to access
+the referenced content. Also, the e-mail addresses no longer
+work. For contacting the original development team, you can
+try namhas at gmail . com.
 
 What is Majik 4, this mud library?
 ----------------------------------
