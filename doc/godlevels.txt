@@ -1,0 +1,154 @@
+This file is an attempt to describe and explain the characteristics of
+different immortality levels. I will be using the phrases IRPT and ICT,
+which stand for "In Role-Playing Terms" and "In Coding Terms" respectively.
+
+LESSER DEITY
+============
+
+    IRPT:
+	-----
+    Lesser deities are the weakest immortals in the Pantheon. They do not 
+	possess much supernatural powers (compared with other immorta|s), but they
+	do have their place among the gods. Lesser deities almost always run 
+	errands for higher immortals. The nature of these errands usually is 
+	involved with mortal affairs, as lesser deities are given very little 
+	information on affairs of the Pantheon for the simple reason that their
+	powers are too limited to benefit anyone and because their lack of
+    experience with immortal affairs might result in foolish decisions and 
+	solutions. Lesser deities do not have a strong alignment yet (or at least
+	they are not supposed to), instead they are expected to work for any
+	higher immortal who commands them to do so. All in all, lesser deities are
+	like children: they are constantly manipulated, guided and controlled and 
+	their heads are filled with loads of trivial information.
+
+    ICT:
+	----
+	Lesser deities only have access to their own home directory and naturally
+	the open-directory. In this stage immortals should learn the LPC language 
+	and learn how to use the lib. They shouldn't commit anything to the actual
+	world of Majik. They should make themselves familiar with all documents
+	and socialize with other immortals. They should also learn everything 
+	about the mortal world they can.
+
+DEITY
+=====
+
+    IRPT:
+	-----
+    When a lesser deity has enough experience, skill, understanding and 
+	humility, he/she/it is appointed the title "deity". Deities are like
+    enhanced versions of lesser deities; they too are controlled by higher
+    immortals but only to a certain extent. Deities have a right to do their
+    own decisions on certain affairs and they are usually appointed a small
+    sphere of control over a certain area of their liking to accomplish this. 
+	However, their decisions still don't have any meaning for the Pantheon, 
+	instead it is simply good practice. Also, in this stage an immortal must
+    choose his/her/its alignment and rise in the favor of a higher immortal of
+	that alignment.
+	
+	ICT:
+	----
+	Deities should already know the basics of LPC, know all the documentation
+	made available to them by heart, know every city and area on the map and 
+	be able to call Yorkaturr "Dorka" without getting removed. What they 
+	should spend their time with is plan some minor stuff with other immortals
+	or do some minor tasks such as removing typos or writing descs in case 
+	higher immortals don't feel like it. 
+	
+GREATER DEITY
+=============
+
+    IRPT:
+	-----
+    Greater deities are deities who have risen in the favor of a certain
+    higher immortal (usually a god) by proving their worth. Greater deities 
+	only work for their own master (and naturally anyone above their own 
+	master), and are expected to have the same alignment as their master. This
+	is the stage in which immortals should also establish a personality and 
+	overall "look".
+	
+	ICT:
+	----
+	Greater deities should have the know-how and experience for making areas
+	that fit the mortal world and also should do so as well. However, they
+	should always converse with higher immortals about their ideas and ask a
+	lot of questions. They should also participate in collective thinking on
+	the deity-channel and propose their own ideas without making fools of 
+	themselves. Could also help lower immortals learn how to code.
+	
+LESSER GOD
+==========
+
+	IRPT:
+	-----
+    Lesser gods are the lowest gods. They are true members of the Pantheon and
+	they always have a certain sphere of control as well as a strong
+    personality and alignment. They do not run mortal affairs anymore (not
+    directly that is), in fact they are secluded from mortal life more than 
+	higher gods just so that they would get used to handling the issues of the
+	Pantheon. This also gives them a chance to screw things up in the 
+	Pantheon, which is why lesser gods are kept an eye on very closely by gods
+	and greater gods. Lesser gods also have a right to command lesser deities 
+	and deities. Lesser gods themselves naturally must comply if a higher god 
+	wishes them to do so, however a higher god should always have a good 
+	reason for commanding lesser gods instead of deities, other than boosting 
+	their already demonic egos (not that there would be a punishment for not 
+	following this rule). Lesser gods are also the lowest immortals who have a
+	right to found a church of their own, which more than compensates for 
+	their lack of direct intervention with mortals.
+	
+	ICT:
+	----
+	Lesser gods should be able to code technically advanced areas and fiddle
+	with their own guilds and their own church. Must use expressions such as 
+	"suffeli", "muijja" and "luuska" on a regular basis. Must not never ever
+	use scands. Preferably has gained his/her title in a con from a poor 
+	drunken (greater) god. Should have earned the trust of ALL higher 
+	immortals. Should guide lower immortals in various things.
+
+GOD
+===
+
+	IRPT:
+	-----
+    The step from a lesser god into a full-fledged god is a great one. Gods
+	are omnipotent, capable of doing anything they can come up with (except
+    control or harm greater gods) and they are the ones who run things in the 
+	Pantheon. Gods have an extremely strong personality and alignment (which
+    naturally limits their numbers greatly - there can't be two similar gods).
+	In the mortal world they typically have a strong church organization lead 
+	with powerful mortals behind them. Their spheres of control are 
+	concentrated on powerful forces such as light, darkness, death and life. 
+	They are indeed the very definition of divinity.
+	
+	ICT:
+	----
+	Gods have access to the Majik CVS so they should fix stuff in the lib and
+	client and add features to them. They should also have met the majority of
+	all other gods IRL at least once. Basicly gods can and will do anything 
+	conceivable so they have a say in all things concerning Majik. Should be 
+	able to argue with every other immortal effectively and know other gods 
+	and greater gods well enough to accomplish this. 
+	
+GREATER GOD
+===========
+
+	IRPT:
+	-----
+    There are only 3 greater gods: Namhas, Dazzt and Sinister. Basically
+	these names are equivalent with neutrality, goodness and evil 
+	(respectively). They are the ultimate powers and their abilities are 
+	uncomprehensible to mortals. They can do _anything_. They can destroy the 
+	known world with a simple thought or create another just as easily. The 
+	only thing which keeps them from doing so is their sacred trinity: their
+	conflicting and equally powerful forces combined form a strong neutral 
+	atmosphere. The reason behind this trinity is unknown, but it is more than
+	probably just a manifestation of their selfishness (if you can't destroy
+	them, join them).
+	
+	ICT:
+	----
+	Essentially the same as gods, but are above gods in the sense that they
+	can remove gods.
+
+-- Yorkaturr, The Grim Reaper

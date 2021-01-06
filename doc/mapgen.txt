@@ -1,0 +1,74 @@
+Generating the gridmaps in Majik4.
+
+$Id: mapgen.txt,v 1.2 1998/09/13 17:43:30 dazzt Exp $
+
+After thinking the map generation process further, I have come up with some
+essential features that we need to have in the generator. Some of them
+include:
+
+	*	Gradual changing from terrain to another (forest to plains)
+	*	"sharp" change from certain terrains (water to any)
+	*	Smooth, a bit random outlines (forests aren't squares)
+	
+Implementing these (and other) features will increase the server overhead
+significantly: the calculations will become quite intensive, and that the
+LPC language isn't really that fast. The amount of calculations required for
+each cell (bicubic interpolation of four parameters plus many random() calls)
+will take much CPU power. If we consider only ten players running in the map, 
+a new map will have to be generated every five seconds. If we increase this to
+50 players, we must generate a new map _every second_. The delay for generating 
+a single map when playing _alone_ is already noticeable when comparing to
+direct loading of pre-drawn map, not mentioning that the current generator 
+doesn't even have any heavy calculations yet!
+
+Now, a really beta version of the generator exists. I have now evaluated the
+performance of the algorithm more closely, and came to conclusion that my 
+Cyrix 6x86 P166+ can generate roughly twelve 100x100 maps per second using four
+terrain parameters (there is still some room for optimizing). If walking 
+through one gridmap takes about 50 seconds we could sustain roughly 500 players 
+with similar computer as mine. If we consider our dear 486 server to be five to 
+ten times slower than my computer, we could handle 50-100 players 
+simultaneously travelling in the gridmap. However, another problem rises. If 
+the map generation takes about one tenth of a second with my computer, it will 
+take something between half and one second in the server causing severe lag. 
+How badly this lag will show, we don't know until we have tested it. The 
+performance of the generator will be increasing, but in any case we will have 
+problems with the cpu.
+
+One solution for this would be doing the calculation in the client-side. The
+map-generator itself is quite simple; the parameters given to it are all
+that matters. Thus, we could send the map parameters to the client, let it 
+generate the map and send it back to server. That way we could grant some
+more lifetime to our dear 486 :).
+
+The best solution for map generation seems to be 'blending functions'. First,
+we define the probabilities of each terrain type present in the gridmap for
+each corner of the gridmap. Then, by using blending functions, the
+probabilities are calculated for each cell and randomized slightly. The
+resulting terrain will be the one with the highest probability in the
+current cell. By using different blending functions we can create various
+transitions between terrains.
+
+Next some examples. I won't draw any ugly ascii here so you can play with
+your favorite math program if you want to visualize them.
+
+	B(x) = x 	  			By using a linear blending function we get a  
+							smooth change from one terrain to another, for 
+							example forest gradually changing to plains.
+				  
+	B(x) = a - (x-b)^2n		A parabolic equation gives us a small patch of
+							terrain to the middle of the gridmap -- roads 
+							for example. Having a higher power 'n' results 
+							in thinner road, 'b' controls the position and
+							'a' condition of the road.
+							
+		   x < a    0.0		A linear function defined in multiple parts 
+	B(x) = a<=x<b  (x-a)/a	results in sharper changes in the terrain
+	       x >= b   1.0		to get realistic river banks and such. 'a' and
+		   					'b' control the position of the change.
+		   
+Naturally more blending functions can be implemented as soon as someone
+comes up with them :).
+
+++Dazzt
+

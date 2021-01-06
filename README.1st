@@ -1,0 +1,171 @@
+What is Majik 4, this mud library?
+----------------------------------
+
+Majik 4 is the Majik Project's fourth incarnation which was up and
+running within years 1998 and 1999. The purpose of Majik 4 and the
+whole Majik project has always been to provide an actual, working
+roleplaying enviroment that would be completely player-controlled
+and self-sustaining, without the need of outside administration and
+control. Majik 4, the gridmap based "roguelike" version was the
+fourth try. It would have been a success as a roguelike or otherwise
+top-down or isometric 2D game, but our ideas required more flexible
+and versatile system and thus we decided to do a 3D game instead,
+abandoning the Majik 4 project. This is the newest copy of our Majik
+4 CVS tree, with no any code taken away or added, only the license
+changed to GNU Public License. 
+
+The project was abandoned when we had agreed that the base code is ready
+enough for world building, but our designers haven't completed their
+world building task yet, and as the coders didn't really like the 2D
+engine anyways and didn't want to stay idle and wait, we begun testing
+various graphical clients to be used with the Majik 4 server, until
+Majik 3D's Milestone 1 was released, we decided it is better to build
+the server from scratch, this time using C++ and Python as scripting
+language.
+
+Why did you release the source code?
+------------------------------------
+
+We saw it more fun to release the source code than leaving it to stay
+on our shelf without use. We hope that this would make Majik's ideas
+and history more widely known and to give game programmers something
+to play with and for some, possibly a base where to build a game on. We
+would really like to see that our code would be useful for someone when
+it is no longer of any use for us. It would be great to see Majik 4
+up and running somewhere once again with active coders trying to make
+it playable. You are allowed to do whatever you wish with the source,
+this is our contribution to the Open Source community.
+
+The Majik Development Team is now concentrating on making Majik's fifth
+incarnation, the Majik 3D project, an online role-playing environment
+using modern 3D-technology and thus doesn't have time to maintain its
+predecessors anymore. If you want to find more about our current project,
+or even join the project, you should see the webpage: http://majik.netti.fi,
+you could also send some mail to majik@majik.netti.fi and tell us if you
+are using parts of this pile of source code or even building a game on top
+of it. We would really like to hear if our previous work is still useful
+for someone.
+
+So how to get started then?
+---------------------------
+
+First you need to compile a mud driver. The library is made for MudOS
+but should be possible to convert to any other lpmud library, but it
+would need work, a lot of work. To get a suitable MudOS driver you do
+the following if /majik is the directory where you keep your copy of
+Majik 4 and v22.1b22 is the current beta version of MudOS.
+
+  $ cd /tmp
+  $ ftp ftp.aragorn.uio.no
+  ftp> cd pub/LPC/servers/MudOS/
+  ftp> get beta.tar.gz
+  ftp> quit
+  $ tar zxf beta.tar.gz
+  $ cd v22.1b22/
+  $ cp /majik/server/bin/local_options .
+  $ cp /majik/server/bin/majik_mapgen.c packages/
+  $ cp /majik/server/bin/majik_mapgen_spec.c packages/
+  $ ./build.MudOS
+
+Edit GNUmakefile or appropriate Makefile and empty the OPTIMIZE line, see
+the example below how you could do it. This is needed because our map
+generator patch is somehow bugging if using optimizations, this happens
+at least on Linux/i386.
+
+  $ ed GNUmakefile
+  ed> /OPTIMIZE
+  ed> c
+  ed> OPTIMIZE=
+  ed> .
+  ed> wq
+
+Then do the actual building:
+
+  $ make
+  $ cp driver /majik/server/bin/
+  $ rm -rf /tmp/v22.1b22
+  $ cd /majik/server/bin/
+
+At this point you need to edit "majik.conf" file and replace the lines 
+"mudlib directory" and "binary directory" with a correct path and then: 
+
+  $ ./driver majik.conf & 
+
+The driver should be now up and running and you should be able to telnet 
+localhost 7680, if you didn't change the port in the configuration file. 
+It this didn't work you should double-check everything and if still you 
+have trouble and no clue, send mail to majik@majik.netti.fi and ask.
+
+Building the client
+-------------------
+
+Playing the game is hard using telnet, as you see, so you might want to
+build the client. Follow the instructions:
+
+  $ cd ../../client/
+  $ automake -a
+  $ aclocal
+  $ autoconf
+  $ ./configure
+  $ make
+  $ su
+  # make install
+  $ exit
+
+Edit the configuration file, if you want to run your own server, which
+is what you're probably about to do now. You can also, of course, use
+the defaults provided in the rc-file, and connect majik.netti.fi's
+server instead, but do not expect it being up and running, it is not
+maintained anymore. For your own server, replace the ip address and
+port (if you have changed it).
+
+  $ cp src/majik4rc ~/.majik4rc
+  $ $EDITOR ~/.majik4rc
+
+You can also try client-drac, it should compile on Win32 too, but doesn't
+include as much features as the older client. In that case just replace
+the first command in the instructions above by "cd ../../client-drac/"
+and it should work.
+
+Then just start the client by typing "majik4", if you have installed
+it properly, otherwise cd to src directory and start it from there. If
+it doesn't work and you have no clue, you can try to ask help from Majik
+Development Team. Remember to read also the README and/or README.client
+file in the client's directory to learn how to use the client.
+
+Admin character
+---------------
+
+To make an admin character for you, you need to make a mortal character 
+first, then log out and edit file /data/player/<first letter>/<your name>.o 
+and add a line "security 100" at the end of the file. For example if you
+name would be "Admin" you would do the following after you have made a
+mortal character and logged it out using "quit" command. 
+
+  $ echo >>server/lib/data/player/a/admin.o "security 100" 
+
+This same applies to all the other characters, except that for the others 
+you might not want to give security level 100, just start from 1 and give 
+more levels when you see it appropriate. 
+
+Extending the world
+-------------------
+
+As said in the beginning of this file, Majik 4 was abandoned at the time
+it's base code was finished, almost, still not even beta however. Anyways,
+the base should be solid enough for you to extend the world. For this
+you should read the server/doc/areamap.txt file to get some overview of
+the system used and remember to take look at the referred examples in
+the file. Essentially to make a new area you would copy stuff from
+world/hilltop directory to your own world/<areaname> directory and then
+edit the maps and coordinates to suit your purposes. Then you would add
+your area to worldmap by editing world/worldmap.c, the add_area() lines
+at somewhere below middle of the file. The coordinates must be in range
+0-620 if using the original Majik4's map which you can customize from
+world/WORLDMAP and you can translate those to game coordinates by
+multiplying by 100. Thus, for example Hilltop's coordinates are 2600x5500,
+and you could use them for warp command when using your admin character.
+
+-- 
+Majik Development Team
+majik@majik.netti.fi http://majik.netti.fi

@@ -1,0 +1,32 @@
+GRID/WORLDMAP COOPERATION
+~
+		(c) 1998 Jari "Dazzt" Saukkonen
+			<jsaukko@clinet.fi>
+
+PROBLEM
+	We need to have a working system that we can easily define locations
+	in worldmap and inside gridmaps. Things will get more complicated as
+	the worldmap partly consists of dynamically generated gridmaps.
+
+SOLUTION
+	There will be three kinds of objects, world object, gridmap objects
+	and gridobjects.
+
+WORLD OBJECT
+	A world-object (or daemon) will be created. The world object
+	contains gridmap object for every location in the worldmap. Areas 
+	(gridmap objects) will be preloaded into world object.
+	
+GRIDMAP OBJECT
+	Each gridmap object has a location in world object (world_x,
+	world_y). Some gridmap objects will be pre-defined (ie. areas)
+	and some are dynamically created by world object. Dynamic gridmaps
+	can be purged from memory when there are no longer gridobjects 
+	inside them. The generation algorithm must always create identical
+	maps for each location.
+
+GRIDOBJECT
+	Gridobjects are objects inside gridmap, ie. players, items.
+	monsters and such. 
+
+++Dazzt

@@ -1,0 +1,38 @@
+
+Security system in Majik4
+
+$Id: security.txt,v 1.1 1998/08/31 17:55:28 dazzt Exp $
+
+This document describes the security system in Majik. The great difference to
+previous incarnations of Majik is that the main coding isn't done inside the
+game anymore. All of the core components are developed under a version control
+system (CVS), which only gods (or higher) have access to. 
+
+The following security theorems are enforced in the security system when 
+determining users' access to read or write certain file.
+
+1.	An object doesn't have any access to this file, unless
+		a)	The file resides in user's home directory,
+		b)	none of the following exceptions apply, or
+		c)	user is a god.
+		
+2.	All directories, that are controlled by CVS (ie. have 'CVS' directory in
+	them), are read only. They can't be modified from inside the game; CVS
+	should be used instead.
+	
+3.	Objects are allowed to save_object() into same directory they are in, 
+	ie. '/daemon/time.c' is only allowed to save_object() to '/daemon/time.o'.
+	The only exception for this rule is the player object, which can save
+	to '/data/player/n/name.o'.
+	
+4.  Everyone has full access to '/open' directory.
+
+5.	Everyone can read '/log' and '/world' directories.
+
+6.	Only the logging daemon (/daemon/log.c) can write into '/log' directory.
+
+7.	Insert more rules here
+
+	
+	++Dazzt
+	

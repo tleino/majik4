@@ -1,0 +1,75 @@
+Client API
+
+Majik4's client should have API (Application Programming Interface) for
+server's use. Server should be able to open windows etc. in the client.
+This document tries to describe the API.
+
+Server side functions
+
+OpenWindow(int width, int height, int type, string title, string data)
+
+  The function should open window of width and height. Type specifies the
+  type of the window and title specifies the title. The type can be one of
+  the following:
+  
+    * WTYPE_TEXT   Window is used to display just plain text, colors are
+	               allowed of course.
+			   
+    * WTYPE_SELECT Window is used to display list of items the user can select
+	               and the selected item is passed to command used to invoke
+				   the list.
+				   
+  The window is closed by client. If there is more lines than window height
+  allows, then the window should be scrollable. Data specifies the contents
+  of the window. ";" separates the lines.
+  
+  For example:
+  
+    OpenWindow (50, 20, WTYPE_SELECT, "Drop which item?", "a shovel;a "
+	  + "dagger;a sword;");
+	  
+  The above example opens window of 50x20 size if allowed, if not, it is
+  shrinked to size that is allowed. It should look something like this:
+  
+  +--------------------------------------------------+
+  | Drop which item?                                 |
+  |                                                  |
+  | A - a shovel                                     |
+  | B - a dagger                                     |
+  | C - a sword                                      |
+  |                                                  |
+  |                                                  |
+  |                                                  |
+  |                                                  |
+  |                                                  |
+  |                                                  |
+  |                                                  |
+  |                                                  |
+  |                                                  |
+  |                                                  |
+  |                                                  |
+  |                                                  |
+  |                                                  |
+  |                                                  |
+  | Z - close window                                 |
+  +--------------------------------------------------+
+  
+  If width and height is 0 then it is as large as needed, like this:
+  
+  +------------------+
+  | Drop which item? |
+  |                  |
+  | A - a shovel     |
+  | B - a dagger     |
+  | C - a sword      |
+  |                  |
+  | Z - close window |
+  +------------------+
+  
+  It is suggested that you always use 0 as width and height. 
+  
+  Window is scrollable by using + and - keys, it scrolls full page and
+  A-Z's are re"calculated".
+  
+  Open for suggestions.
+  

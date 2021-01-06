@@ -1,0 +1,40 @@
+#!/bin/sh
+# $Id: majik,v 1.2 1998/08/12 11:15:05 namhas Exp $
+
+# /etc/init.d/xdm: start or stop the MudOS driver
+
+set -e
+
+DAEMON=/majik/bin/driver
+
+test -x $DAEMON || exit 0
+test -d ../lib/log || mkdir ../lib/log
+
+case "$1" in
+  start)
+    echo "Starting MudOS driver: majik"
+    start-stop-daemon --start --quiet --exec $DAEMON -- majik.conf || echo -n " already running"
+    echo "."
+  ;;
+
+  restart)
+    $0 stop
+    $0 start
+  ;;
+
+  reload)
+    $0 restart
+  ;;
+  stop)
+    echo -n "Stopping MudOS driver: majik"
+	start-stop-daemon --stop --quiet --exec $DAEMON || echo -n " not running"
+	echo "."
+  ;;
+
+  *)
+    echo "Usage: $0 {start|stop|restart|reload|force-reload}"
+    exit 1
+    ;;
+esac
+
+exit 0

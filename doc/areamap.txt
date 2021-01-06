@@ -1,0 +1,43 @@
+Coordinates & maps
+==================
+  We now have a new coordinate and mapping system, so I'll explain it's
+  basic concepts.
+  
+  Gridmaps are inside areamap objects inherited from areamap.c. For example
+  the worldmap is handled by "/world/worldmap" which inherits areamp.c.
+  The areamap object keeps book on which gridmap is where and converts global
+  coordinates into local. "/world/worldmap"->query_tile(x, y) would first
+  resolve the gridmap containing tile x, y and then convert the coordinates
+  into gridmap coordinates and call query_tile() in the gridmap.
+  If a gridmap is created before the areamap which should contain it, serious 
+  bugs will occur.
+  
+  When you build a new area outside worldmap you should first make a areamap
+  file similiar to "/world/worldmap" which sets the gridmaps it is containing
+  and their area coordinates.
+  
+  No function should call a gridmap file directly or use local coordinates.
+  Everything should be done through areamap objects. MAPENV(object)->function()
+  must be used instead of ENV(object)->function().
+  The only expection to this is create_gridmap() in gridmap files where 
+  descriptions, objects and such must be set with local coordinates. This
+  does not concern coordinates pointing to other gridmaps such as stairs'
+  target coordinates. Neither does this include monsters' wander settings or
+  other settings which do not concern the gridmap directly.
+  
+  Take a look at "/world/worldmap.c", "/world/hilltop/hilltop1.c", 
+  "/world/hilltop/hilltopcellar.c" and "/world/hilltop/hilltop1.c".
+  Especially hilltop1.c and hilltop2.c show how to set some things 
+  more dynamically.
+  
+Short summary:
+ 
+  Every gridmap must be of size 100x100 grids.
+  Every gridmap must be inside object inherited from areamap.c.
+  ENV(object) must be replaced with MAPENV(object).
+  Global coordinates must be used instead of local coordinates.
+  The only place where local coordinates can be used is in gridmaps'
+   create_gridmap() functions. This does not include monster wander settings 
+   nor stairs' target coordinates on other gridmaps.
+   
+- Harum  //  Nov 21. 1998

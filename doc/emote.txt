@@ -1,0 +1,89 @@
+DOCUMENTATION FOR MAJIK4 MESSAGING SYSTEM
+
+Majik4 has system for parsing names, verbs and pronomins automagically.
+Messages are sent using message() sefun, for which the proper format is:
+ 
+ message(type, int x_coord, int y_coord, int radius, string message, 
+         mixed target, mixed objects, mixed exclude);
+ 
+Type is one of the followings:
+ CMD_SEE      Something a player can see.
+ CMD_HEAR     Something a player can hear.
+ CMD_SMELL    Something a player can smell.
+ CMD_FEEL     Something a player can feel. (touch)
+ CMD_TASTE    Something a player can taste.
+ CMD_SENSE    Something a player can sense.
+ CMD_OOC      Out of character infomation.
+ CMD_INFO     Reboots, etc.
+ CMD_MSG      General messages.
+ 
+X_coord, y_coord and radius
+ Source and radius of the message. Use 0,0,0 if the message doesn't have a 
+ clear source on the grid.
+
+Message:
+ The actual message can contain the following tags:
+
+  $nn = name lowercased, or forced to uppercase if proper name: orc, Harum
+  $Nn = capitalized name of n: Orc, Harum
+  $tn = himself, herself, itself, you/yourself, orc or Harum // This is the
+  $tN = Himself, Herself, Itself, You/Yourself, Orc or Harum // target of
+  $en = he, she, it or you.                                     the verb
+  $En = He, She, it or You.
+  $mn = him, her, it, your.
+  $Mn = Him, Her, It, Your.
+  $sn = his, her, its or your.
+  $Sn = His, Her, Its or Your.
+  $on = orc's or Harum's
+  $On = Orc's or Harum's
+  $pn = short description of n
+  $Pn = and capitalized version
+  
+  n is the number of object
+   objects[0] = 1
+   objects[1] = 2
+   $n1 = name of objects[0]
+  
+  {verb} = verb / pluralize(verb), all verbs should be put inside {}
+
+Target
+  Target is object or array of objects to whom the message will be sent.
+  For example THIS or all_inventory(ENV(THIS))
+	
+Objects 
+  Objects are the objects used by tags.
+  Use 0 if you don't have any $ tags in your message.
+
+Exclude
+  Exclude is object(s) to whom the message will not be sent.
+  With this you can exclude specific players from Target.
+  This argument is optional.
+
+Examples
+ 
+  message(CMD_INFO, 0,0,0, "REBOOT.", users());
+   
+   will send message "REBOOT." to every user online.
+  
+  message(CMD_SEE, 0,0,0 "$n1 {smack} $t2 and $t1.", 
+          all_inventory(ENV(THIS)), ({ THIS, THAT }) );
+   
+   THIS: "You smack Teppo and yourself."
+   THAT: "Harum smacks you and himself."
+   else: "Harum smacks Teppo and himself."
+  
+  message(CMD_SEE, 0,0,0, "$n1 {hit} $o2 left leg with $s1 $n3.", 
+          all_inventory(ENV(THIS)), ({ THIS, present("elf"), 
+		  present("sword") }) );
+   
+   THIS        : "You hit elf's left leg with your Sword of annihiltion."
+   elf         : "Harum hits you with his sword."
+   someone else: "Orc hits elf with his sword."
+   someone else: "Harum hits Lathas with his sword."
+   
+   Note that the actual name player sees depends if he is familiar with
+   it or not.
+   
+Feel free to ask and remember that all of this might not be implemented yet.
+
+//Harum

@@ -1,0 +1,32 @@
+This document describes the Majik stat system.
+----------------------------------------------
+=== Overview ===
+
+The stat system of Majik is 2-dimensional; all living beings, including
+animals, monsters and humanoid races, share a common race value for
+each individual stat which ranges from 1 (field mouse) to 200 (celestial 
+dragon) and individual race members have a comparison value which ranges from 
+-50 to 50 (thus 0 being the racial average) which describes the quality of the
+stat compared with other representatives of the race.
+
+=== Race Value ===
+
+The scale of the race value is logarithmic instead of linear, so it 
+should NOT be interpreted like: "Dragons are 200 times stronger than mice". 
+Medium-sized humanoid races are vaguely around 10-20 on this scale. This 
+scale is very easily tuned by looking at the individual stats of creatures
+in some Chaosium RPG manual.
+
+=== Comparison Value ===
+
+The nature of the comparison value scale is undetermined in the sense that it
+is neither logarithmic nor linear. A value of -50 of an individual stat means
+that the stat is at the absolute poorest end of the individual stats of the 
+race and a value of 50 means that the stat is the best possible reachable
+value of the race. 
+
+=== Relationship between Race Value and Comparison Value ===
+
+Final Comparison Value = Race Value + (Comparison Value / 10)
+
+- Yorkaturr -

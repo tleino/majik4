@@ -1,0 +1,59 @@
+This is a TODO list for both client and server of the Majik4. Please add
+everything you feel like they should be included in base system. This is 
+not in priority order. Use your own common sense determining priority of
+the tasks.
+
+ - Item system
+     + generic item system, including list of weapons, armours, items
+       and such. this includes everything from single weapons to items
+       such as torches, liquid containers and the money.
+     + material system, material types etc.
+     + get, drop, inventory, give and the related commands.
+     + item saving system, save variables of the item and the "generate"
+       string.
+     + unique equipment system, possibility to add items that is not generated
+       by the generic item code.
+	   
+ - Living system
+     + common functions for both players and monsters, hit locations and such.
+     + skill and spell system. (not so priority unless first version of real
+       battle system is ready, we can just use some default values whether we
+       need skill checks).
+	   
+ - Monster system
+     + monster races.
+     + generic monster creation system.
+     + possibility to have unique monsters.
+     + simple ai functionatily, monsters should be able to walk randomly
+       around, by certain path or just stay and they should be able to say
+       things by pre defined variables (in case the monster is unique). they
+       should be able to follow when attacked, they should be able to be
+       aggressive.
+
+ - Battle system
+     + just improve the current battle system to use hit locations, better 
+       formulas for everything, battle messages and different attacking
+       types. 
+     + weapon and armor system integrated to battle so they have some
+       effect, or actually more than just some :)
+
+ - UI (User Interface)
+     + there should be button to change "mood" from aggressive to friendly,
+       and some system that we remember if we are aggressive to some certain
+       person and whether not and some system to make that we are no longer
+       aggressive... this needs some thinking.
+     + support for command history we can browse using cursor keys, also left
+       and right cursor keys should be binded. we need system to parse <esc>
+       codes in this point.
+     + `?' key should bring a browsable help page.
+     + there should be API that allows server to open "windows" in client,
+       and make some lists etc, thus allowing us to have more intuitive
+       inventory command, as is in ADOM.
+     + when someone tries to kill the player when browsing help pages,
+       inventory or something it should automatically switch to the "default"
+       screen and be able to defend. that's just only proposal, another way
+       is to display help pages and inventory on the for example: text window
+       or description window..
+     + new user registration, should be fully controllable by server as
+       almost everything else (client API).
+
